@@ -21,7 +21,11 @@ Lector de PDF para Android: ligero, sin anuncios y sin cuentas. Abre los PDF que
 
 ## Descarga
 
-El APK listo para instalar está en la sección [Releases](../../releases) del repositorio.
+[![Descargar APK](https://img.shields.io/badge/Descargar-APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/monkeyelgrande/MonkeyPDF/releases/latest/download/MonkeyPDF.apk)
+
+**[⬇ Descargar MonkeyPDF.apk](https://github.com/monkeyelgrande/MonkeyPDF/releases/latest/download/MonkeyPDF.apk)** (última versión)
+
+Para instalarlo, abre el archivo en el teléfono. Si Android lo pide, permite «Instalar apps desconocidas» para el navegador o el gestor de archivos. Las versiones anteriores están en [Releases](https://github.com/monkeyelgrande/MonkeyPDF/releases).
 
 ## Compilar desde el código
 
