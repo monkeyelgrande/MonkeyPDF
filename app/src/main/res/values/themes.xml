@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MonkeyPDF" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_red</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#FFDAD5</item>
+        <item name="colorOnPrimaryContainer">#410001</item>
+        <item name="colorSecondary">#775652</item>
+        <item name="colorTertiary">#705C2E</item>
+    </style>
+
+    <style name="Theme.MonkeyPDF.Viewer">
+        <item name="android:windowBackground">@color/viewer_background</item>
+    </style>
+</resources>

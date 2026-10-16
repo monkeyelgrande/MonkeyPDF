@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MonkeyPDF" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#FFB4A9</item>
+        <item name="colorOnPrimary">#690002</item>
+        <item name="colorPrimaryContainer">#930006</item>
+        <item name="colorOnPrimaryContainer">#FFDAD5</item>
+        <item name="colorSecondary">#E7BDB7</item>
+        <item name="colorTertiary">#DEC48C</item>
+    </style>
+</resources>

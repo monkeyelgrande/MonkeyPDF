@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_bookmark"
+        android:icon="@drawable/ic_bookmark_border"
+        android:title="@string/add_bookmark"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_thumbnails"
+        android:icon="@drawable/ic_grid"
+        android:title="@string/thumbnails"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_go_to_page"
+        android:title="@string/go_to_page" />
+    <item
+        android:id="@+id/action_bookmarks"
+        android:title="@string/bookmarks" />
+    <item
+        android:id="@+id/action_toc"
+        android:title="@string/table_of_contents" />
+    <item
+        android:id="@+id/action_copy_text"
+        android:title="@string/copy_page_text" />
+    <item
+        android:id="@+id/action_favorite"
+        android:checkable="true"
+        android:title="@string/favorite" />
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/share" />
+    <item
+        android:id="@+id/action_open_with"
+        android:title="@string/open_with" />
+    <item
+        android:id="@+id/action_save_copy"
+        android:title="@string/save_copy" />
+    <item
+        android:id="@+id/action_night_mode"
+        android:checkable="true"
+        android:title="@string/night_mode" />
+    <item
+        android:id="@+id/action_print"
+        android:title="@string/print" />
+</menu>

@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Silueta para iconos temáticos (Android 13+): cabeza con orejas y documento -->
+    <path android:fillColor="#FFFFFF" android:pathData="M34,42m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0 M74,42m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0 M54,45m-21,0a21,21 0,1 1,42 0a21,21 0,1 1,-42 0" />
+    <path android:fillColor="#FFFFFF" android:pathData="M38,61h32a3,3 0,0 1,3 3v19a3,3 0,0 1,-3 3h-32a3,3 0,0 1,-3 -3v-19a3,3 0,0 1,3 -3z" />
+</vector>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MonkeyPDF</string>
+
+    <!-- Pantalla principal -->
+    <string name="open_pdf">Abrir PDF</string>
+    <string name="empty_title">Aún no has abierto ningún PDF</string>
+    <string name="empty_message">Busca un archivo en tu teléfono o ábrelo desde WhatsApp, el correo o tu gestor de archivos.</string>
+    <string name="recent_subtitle">Página %1$d de %2$d · %3$s</string>
+    <string name="remove_from_recents">Quitar de recientes</string>
+    <string name="clear_recents">Borrar recientes</string>
+    <string name="clear_recents_confirm">¿Borrar la lista de recientes? Los favoritos se conservan. Las copias de PDFs recibidos de otras apps (WhatsApp, correo…) también se borran; los archivos originales del teléfono no se tocan.</string>
+    <string name="clear">Borrar</string>
+    <string name="set_as_default">Usar como lector predeterminado</string>
+    <string name="default_app_title">Lector predeterminado</string>
+    <string name="default_app_message">Para que los PDF se abran siempre con MonkeyPDF:\n\n1. Abre un PDF desde WhatsApp, el correo o tu gestor de archivos.\n2. En “Abrir con”, elige MonkeyPDF.\n3. Toca “Siempre”.\n\nSi los PDF ya se abren con otra app, entra en Ajustes › Apps › (esa app) › Abrir de forma predeterminada y borra sus valores predeterminados. Después repite los pasos anteriores.</string>
+    <string name="open_settings">Abrir ajustes</string>
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- Visor -->
+    <string name="share">Compartir</string>
+    <string name="share_with">Compartir PDF</string>
+    <string name="go_to_page">Ir a la página…</string>
+    <string name="go">Ir</string>
+    <string name="page_hint">Página (1 a %1$d)</string>
+    <string name="night_mode">Modo noche</string>
+    <string name="print">Imprimir</string>
+    <string name="page_indicator">%1$d / %2$d</string>
+
+    <!-- Errores -->
+    <string name="error_no_file">No se recibió ningún archivo para abrir.</string>
+    <string name="error_access">No se pudo acceder al archivo. Puede que se haya movido o eliminado, o que la app que lo compartió ya no dé permiso. Vuelve a abrirlo desde su ubicación.</string>
+    <string name="error_invalid">El archivo está dañado o no es un PDF válido.</string>
+    <string name="error_generic">No se pudo abrir el PDF.</string>
+    <string name="error_share">No se pudo compartir este archivo.</string>
+    <string name="error_page">Escribe un número entre 1 y %1$d.</string>
+    <string name="error_no_settings">No se encontraron los ajustes en este dispositivo.</string>
+
+    <!-- Favoritos -->
+    <string name="tab_recents">Recientes</string>
+    <string name="tab_favorites">Favoritos</string>
+    <string name="empty_favorites_title">Aún no tienes favoritos</string>
+    <string name="empty_favorites_message">Toca la estrella de un documento para tenerlo siempre a mano.</string>
+    <string name="add_favorite">Añadir a favoritos</string>
+    <string name="remove_favorite">Quitar de favoritos</string>
+    <string name="favorite">Favorito</string>
+
+    <!-- Búsqueda y texto -->
+    <string name="search">Buscar</string>
+    <string name="search_hint">Buscar en el documento</string>
+    <string name="searching">Buscando…</string>
+    <string name="search_count">%1$d de %2$d</string>
+    <string name="search_none">Sin resultados</string>
+    <string name="previous_result">Resultado anterior</string>
+    <string name="next_result">Resultado siguiente</string>
+    <string name="copy_page_text">Seleccionar texto de la página</string>
+    <string name="no_text_on_page">Esta página no tiene texto seleccionable. Puede que sea una imagen escaneada.</string>
+    <string name="copied">Texto copiado</string>
+    <string name="loading">Cargando…</string>
+
+    <!-- Marcadores, índice y miniaturas -->
+    <string name="add_bookmark">Añadir marcador</string>
+    <string name="remove_bookmark">Quitar marcador</string>
+    <string name="bookmark_added">Marcador añadido en la página %1$d</string>
+    <string name="bookmark_removed">Marcador quitado de la página %1$d</string>
+    <string name="bookmarks">Marcadores</string>
+    <string name="no_bookmarks">Aún no hay marcadores. Toca el icono de marcador de la barra superior para guardar la página que estás leyendo.</string>
+    <string name="table_of_contents">Índice</string>
+    <string name="thumbnails">Miniaturas</string>
+    <string name="thumbnails_title">Páginas (%1$d)</string>
+    <string name="page_number">Página %1$d</string>
+
+    <!-- Copias y reenvío -->
+    <string name="open_with">Abrir con otra app</string>
+    <string name="save_copy">Guardar una copia…</string>
+    <string name="saved_copy">Copia guardada</string>
+    <string name="error_save">No se pudo guardar la copia.</string>
+    <string name="no_other_apps">No hay otra app que pueda abrir este PDF.</string>
+
+    <!-- Contraseña -->
+    <string name="password_title">PDF protegido</string>
+    <string name="password_message">Este documento está protegido. Escribe la contraseña para abrirlo.</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="password_wrong">Contraseña incorrecta</string>
+    <string name="open">Abrir</string>
+
+    <!-- Escáner -->
+    <string name="scan">Escanear</string>
+    <string name="scan_file_name">Escaneo %1$s</string>
+    <string name="scan_saving">Guardando el documento escaneado…</string>
+    <string name="error_scanner">No se pudo abrir el escáner. Necesita los servicios de Google Play actualizados; la primera vez también necesita internet para descargar el componente.</string>
+    <string name="error_scan_save">No se pudo guardar el documento escaneado.</string>
+</resources>

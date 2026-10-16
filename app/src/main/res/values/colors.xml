@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_red">#C62828</color>
+    <color name="viewer_background">#E4E4E7</color>
+    <color name="indicator_background">#CC202124</color>
+</resources>

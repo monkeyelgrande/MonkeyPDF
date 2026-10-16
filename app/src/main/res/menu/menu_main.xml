@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_default_app"
+        android:title="@string/set_as_default" />
+    <item
+        android:id="@+id/action_clear_recents"
+        android:title="@string/clear_recents" />
+</menu>

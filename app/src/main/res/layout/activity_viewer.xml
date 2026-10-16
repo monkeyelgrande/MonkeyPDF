@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewer_background">
+
+    <com.monkeypdf.app.ZoomableRecyclerView
+        android:id="@+id/pages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false" />
+
+    <com.monkeypdf.app.FastScroller
+        android:id="@+id/fastScroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Tiradores de la selección de texto -->
+    <com.monkeypdf.app.SelectionOverlay
+        android:id="@+id/selectionOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationContentDescription="@android:string/cancel"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:titleTextAppearance="?attr/textAppearanceTitleMedium" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/pageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_page_indicator"
+        android:gravity="center"
+        android:minWidth="72dp"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="6dp"
+        android:textAppearance="?attr/textAppearanceLabelLarge"
+        android:textColor="#FFFFFF"
+        android:visibility="gone" />
+
+    <!-- Barra de resultados de búsqueda -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchBar"
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="4dp">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/searchProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:indeterminate="true"
+                app:indicatorSize="20dp"
+                app:trackThickness="2dp" />
+
+            <TextView
+                android:id="@+id/searchStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="96dp"
+                android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+            <ImageButton
+                android:id="@+id/searchPrev"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/previous_result"
+                android:src="@drawable/ic_expand_less"
+                app:tint="?attr/colorOnSurface" />
+
+            <ImageButton
+                android:id="@+id/searchNext"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/next_result"
+                android:src="@drawable/ic_expand_more"
+                app:tint="?attr/colorOnSurface" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="32dp"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:visibility="gone" />
+
+</FrameLayout>
