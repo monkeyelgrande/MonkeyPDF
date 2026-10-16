@@ -3,9 +3,9 @@
     <string name="app_name">MonkeyPDF</string>
 
     <!-- Pantalla principal -->
-    <string name="open_pdf">Abrir PDF</string>
-    <string name="empty_title">Aún no has abierto ningún PDF</string>
-    <string name="empty_message">Busca un archivo en tu teléfono o ábrelo desde WhatsApp, el correo o tu gestor de archivos.</string>
+    <string name="open_pdf">Abrir archivo</string>
+    <string name="empty_title">Aún no has abierto ningún documento</string>
+    <string name="empty_message">Busca un PDF, Word, Excel o PowerPoint en tu teléfono o ábrelo desde WhatsApp, el correo o tu gestor de archivos.</string>
     <string name="recent_subtitle">Página %1$d de %2$d · %3$s</string>
     <string name="remove_from_recents">Quitar de recientes</string>
     <string name="clear_recents">Borrar recientes</string>
@@ -91,4 +91,17 @@
     <string name="scan_saving">Guardando el documento escaneado…</string>
     <string name="error_scanner">No se pudo abrir el escáner. Necesita los servicios de Google Play actualizados; la primera vez también necesita internet para descargar el componente.</string>
     <string name="error_scan_save">No se pudo guardar el documento escaneado.</string>
+
+    <!-- Word, Excel y PowerPoint -->
+    <string name="share_document">Compartir documento</string>
+    <string name="no_other_apps_document">No hay otra app que pueda abrir este documento.</string>
+    <string name="office_chart">Gráfico (no disponible en la vista previa)</string>
+    <string name="office_empty_sheet">Esta hoja está vacía.</string>
+    <string name="office_true">VERDADERO</string>
+    <string name="office_false">FALSO</string>
+    <string name="office_truncated">La hoja es muy grande: se muestran las primeras %1$d filas y %2$d columnas.</string>
+    <string name="office_slide">Diapositiva %1$d de %2$d</string>
+    <string name="error_office_invalid">El archivo está dañado o no es un documento de Office válido.</string>
+    <string name="error_office_legacy">Este archivo usa un formato antiguo de Office (.doc, .xls o .ppt) o está protegido con contraseña, y MonkeyPDF no puede mostrarlo. Guárdalo como .docx, .xlsx o .pptx para abrirlo aquí.</string>
+    <string name="error_office_too_big">El documento es demasiado grande para mostrarlo en este teléfono.</string>
 </resources>

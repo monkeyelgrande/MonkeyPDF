@@ -1,18 +1,21 @@
 package com.monkeypdf.app
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.OpenableColumns
 import androidx.core.content.FileProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileNotFoundException
 import java.security.MessageDigest
 import java.util.UUID
 
 /**
- * Copias de los PDF que llegan desde otras apps (WhatsApp, Gmail...).
+ * Copias de los documentos (PDF, Word, Excel, PowerPoint) que llegan desde otras apps (WhatsApp, Gmail...).
  *
  * Esas apps solo dan permiso temporal: sin una copia, el archivo dejaría de abrirse desde
  * Recientes al cerrar MonkeyPDF. Las copias se exponen con un FileProvider propio, así que
@@ -26,20 +29,45 @@ object LocalCopies {
 
     fun isLocal(context: Context, uri: Uri): Boolean = uri.authority == authority(context)
 
+    /**
+     * Devuelve un URI que se podrá volver a abrir más adelante. Si la app de origen solo dio
+     * permiso temporal (WhatsApp, Gmail...), guarda una copia del archivo dentro de MonkeyPDF.
+     */
+    suspend fun keepReadable(context: Context, uri: Uri, intent: Intent, displayName: String, extension: String): Uri {
+        if (isLocal(context, uri)) return uri
+        val resolver = context.contentResolver
+        val persisted = resolver.persistedUriPermissions.any { it.uri == uri && it.isReadPermission }
+        if (persisted) return uri
+        if (intent.flags and Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION != 0) {
+            try {
+                resolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                return uri
+            } catch (_: SecurityException) {
+            }
+        }
+        return withContext(Dispatchers.IO) {
+            try {
+                copy(context, uri, displayName, extension)
+            } catch (e: Exception) {
+                uri // Sin copia: al menos se intenta abrir el original.
+            }
+        }
+    }
+
     /** Copia [source] al almacenamiento de la app y devuelve el URI de la copia. Hace E/S. */
-    fun copy(context: Context, source: Uri, displayName: String): Uri {
+    fun copy(context: Context, source: Uri, displayName: String, extension: String = "pdf"): Uri {
         val dir = directory(context)
         val base = displayName.substringBeforeLast('.', displayName)
             .replace(Regex("[\\\\/:*?\"<>|\\x00-\\x1F]"), "_")
             .trim().ifEmpty { "documento" }.take(120)
         val sourceSize = sizeOf(context, source)
 
-        var target = File(dir, "$base.pdf")
+        var target = File(dir, "$base.$extension")
         if (target.exists() && sourceSize >= 0 && target.length() == sourceSize) {
             return uriFor(context, target) // Ya se había guardado este mismo archivo.
         }
         var n = 1
-        while (target.exists()) target = File(dir, "$base (${n++}).pdf")
+        while (target.exists()) target = File(dir, "$base (${n++}).$extension")
 
         val temp = File(dir, ".tmp-${UUID.randomUUID()}")
         try {

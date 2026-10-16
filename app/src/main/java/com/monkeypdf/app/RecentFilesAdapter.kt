@@ -48,11 +48,16 @@ class RecentFilesAdapter(
             b.thumb.scaleType = ImageView.ScaleType.CENTER_CROP
             b.thumb.imageTintList = null
         } else {
-            b.thumb.setImageResource(R.drawable.ic_pdf)
+            // Sin miniatura (p. ej. documentos de Office): icono del tipo de archivo con su color.
+            val (icon, color) = when (OfficeFormat.fromName(file.name)) {
+                OfficeFormat.WORD -> R.drawable.ic_doc_word to context.getColor(R.color.word_blue)
+                OfficeFormat.EXCEL -> R.drawable.ic_doc_excel to context.getColor(R.color.excel_green)
+                OfficeFormat.POWERPOINT -> R.drawable.ic_doc_powerpoint to context.getColor(R.color.powerpoint_orange)
+                null -> R.drawable.ic_pdf to MaterialColors.getColor(b.thumb, androidx.appcompat.R.attr.colorPrimary)
+            }
+            b.thumb.setImageResource(icon)
             b.thumb.scaleType = ImageView.ScaleType.CENTER_INSIDE
-            b.thumb.imageTintList = android.content.res.ColorStateList.valueOf(
-                MaterialColors.getColor(b.thumb, androidx.appcompat.R.attr.colorPrimary)
-            )
+            b.thumb.imageTintList = android.content.res.ColorStateList.valueOf(color)
         }
 
         b.star.setImageResource(if (file.favorite) R.drawable.ic_star else R.drawable.ic_star_border)

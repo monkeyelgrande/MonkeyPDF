@@ -3,4 +3,7 @@
     <color name="brand_red">#C62828</color>
     <color name="viewer_background">#E4E4E7</color>
     <color name="indicator_background">#CC202124</color>
+    <color name="word_blue">#2B579A</color>
+    <color name="excel_green">#217346</color>
+    <color name="powerpoint_orange">#C43E1C</color>
 </resources>

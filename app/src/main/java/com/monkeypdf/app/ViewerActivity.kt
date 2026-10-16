@@ -137,29 +137,8 @@ class ViewerActivity : AppCompatActivity() {
         else -> intent.data
     }
 
-    /**
-     * Devuelve un URI que se podrá volver a abrir más adelante. Si la app de origen solo dio
-     * permiso temporal (WhatsApp, Gmail...), guarda una copia del PDF dentro de MonkeyPDF.
-     */
-    private suspend fun resolveReadableUri(uri: Uri): Uri {
-        if (LocalCopies.isLocal(this, uri)) return uri
-        val persisted = contentResolver.persistedUriPermissions.any { it.uri == uri && it.isReadPermission }
-        if (persisted) return uri
-        if (intent.flags and Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION != 0) {
-            try {
-                contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                return uri
-            } catch (_: SecurityException) {
-            }
-        }
-        return withContext(Dispatchers.IO) {
-            try {
-                LocalCopies.copy(this@ViewerActivity, uri, displayName)
-            } catch (e: Exception) {
-                uri // Sin copia: al menos se intenta abrir el original.
-            }
-        }
-    }
+    private suspend fun resolveReadableUri(uri: Uri): Uri =
+        LocalCopies.keepReadable(this, uri, intent, displayName, "pdf")
 
     private fun loadDocument(uri: Uri, password: String?) {
         binding.progress.isVisible = true

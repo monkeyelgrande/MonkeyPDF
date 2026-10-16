@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var recents: RecentFilesStore
     private val adapter = RecentFilesAdapter(
-        onClick = { openPdf(it.uri) },
+        onClick = { openDocument(it.uri, it.name) },
         onLongClick = { file, view -> showItemMenu(file, view) },
         onToggleFavorite = { file ->
             recents.setFavorite(file.uri, !file.favorite)
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     )
     private val showingFavorites get() = binding.tabs.selectedTabPosition == TAB_FAVORITES
 
-    /** Selector de archivos del sistema, filtrado a PDFs (almacenamiento interno, SD, Drive, Descargas...). */
+    /** Selector de archivos del sistema, filtrado a PDFs y Office (almacenamiento interno, SD, Drive, Descargas...). */
     private val pickPdf = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri == null) return@registerForActivityResult
         try {
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
         } catch (_: SecurityException) {
         }
-        openPdf(uri)
+        openDocument(uri, displayNameOf(uri))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +69,9 @@ class MainActivity : AppCompatActivity() {
         recents = RecentFilesStore(this)
         binding.recentList.layoutManager = LinearLayoutManager(this)
         binding.recentList.adapter = adapter
-        binding.openButton.setOnClickListener { pickPdf.launch(arrayOf("application/pdf")) }
+        binding.openButton.setOnClickListener {
+            pickPdf.launch((listOf("application/pdf") + OfficeFormat.ALL_MIME_TYPES).toTypedArray())
+        }
         binding.scanButton.setOnClickListener { startScanner() }
         savedInstanceState?.getInt(STATE_TAB)?.let { binding.tabs.getTabAt(it)?.select() }
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -163,13 +165,21 @@ class MainActivity : AppCompatActivity() {
         binding.emptyMessage.setText(if (showingFavorites) R.string.empty_favorites_message else R.string.empty_message)
     }
 
-    private fun openPdf(uri: Uri) {
+    private fun openPdf(uri: Uri) = openDocument(uri, "documento.pdf")
+
+    /** Abre el visor que corresponde al tipo de archivo: PDF o Word/Excel/PowerPoint. */
+    private fun openDocument(uri: Uri, name: String) {
+        val office = OfficeFormat.fromName(name)
+            ?: if (name.endsWith(".pdf", ignoreCase = true)) null
+            else OfficeFormat.fromMime(runCatching { contentResolver.getType(uri) }.getOrNull())
         // Sin FLAG_GRANT_READ_URI_PERMISSION: el visor es de esta misma app y ya comparte sus permisos.
         // Pedirlo para un archivo cuyo permiso temporal caducó (p. ej. uno abierto desde WhatsApp)
         // haría que Android lanzara SecurityException.
-        val intent = Intent(this, ViewerActivity::class.java)
-            .setAction(Intent.ACTION_VIEW)
-            .setDataAndType(uri, "application/pdf")
+        val intent = if (office != null) {
+            Intent(this, OfficeViewerActivity::class.java).setAction(Intent.ACTION_VIEW).setDataAndType(uri, office.mime)
+        } else {
+            Intent(this, ViewerActivity::class.java).setAction(Intent.ACTION_VIEW).setDataAndType(uri, "application/pdf")
+        }
         startActivity(intent)
     }
 
@@ -182,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             menu.add(R.string.share).setOnMenuItemClickListener {
-                shareFile(file.uri)
+                shareFile(file.uri, OfficeFormat.fromName(file.name)?.mime ?: "application/pdf")
                 true
             }
             menu.add(R.string.remove_from_recents).setOnMenuItemClickListener {
@@ -194,9 +204,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun shareFile(uri: Uri) {
+    private fun shareFile(uri: Uri, mime: String) {
         val send = Intent(Intent.ACTION_SEND)
-            .setType("application/pdf")
+            .setType(mime)
             .putExtra(Intent.EXTRA_STREAM, uri)
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         send.clipData = android.content.ClipData.newRawUri("", uri)

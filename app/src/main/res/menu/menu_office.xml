@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
+        android:id="@+id/action_favorite"
+        android:checkable="true"
+        android:title="@string/favorite" />
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/share" />
+    <item
+        android:id="@+id/action_open_with"
+        android:title="@string/open_with" />
+    <item
+        android:id="@+id/action_save_copy"
+        android:title="@string/save_copy" />
+    <item
+        android:id="@+id/action_night_mode"
+        android:checkable="true"
+        android:title="@string/night_mode" />
+    <item
+        android:id="@+id/action_print"
+        android:title="@string/print" />
+</menu>
